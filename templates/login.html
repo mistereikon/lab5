@@ -1,0 +1,45 @@
+<!-- templates/login.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <h2 class="mb-4">Вхід</h2>
+        <form method="post" action="{{ url_for('login') }}" novalidate>
+          {{ form.hidden_tag() }}
+
+          <div class="form-group">
+            {{ form.username.label }}
+            {{ form.username(class="form-control") }}
+            {% if form.username.errors %}
+              {% for error in form.username.errors %}
+                <span style="color: red;">{{ error }}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password(class="form-control") }}
+            {% if form.password.errors %}
+              {% for error in form.password.errors %}
+                <span style="color: red;">{{ error }}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
+
+          <div class="form-group form-check">
+            {{ form.remember(class="form-check-input") }}
+            <label class="form-check-label" for="{{ form.remember.id }}">Запам'ятати мене</label>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Увійти</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
